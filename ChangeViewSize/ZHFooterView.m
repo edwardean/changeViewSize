@@ -44,11 +44,11 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-      [self setUp];
-    }
-    return self;
+	self = [super initWithFrame:frame];
+	if (self) {
+		[self setUp];
+	}
+	return self;
 }
 
 - (void)setUp
@@ -100,12 +100,13 @@
 
 - (void)layoutSubviews
 {
+	NSLog(@"%s",__func__);
 	[super layoutSubviews];
 	CGFloat fansLabelOriginX = fansButton_.frame.origin.x
-			+fansButton_.frame.size.width + FansButtonToFansLabelMargin;
+	+fansButton_.frame.size.width + FansButtonToFansLabelMargin;
 	[fansLabel_ setFrame:CGRectMake(fansLabelOriginX,
-																	 self.frame.size.height/2,
-																	 0,0)];
+																	self.frame.size.height/2,
+																	0,0)];
 	[fansLabel_ setText:[NSString stringWithFormat:@"%i",fans]];
 	[fansLabel_ sizeToFit];
 	CGPoint fansLabelCenter = self.fansLabel.center;
@@ -114,8 +115,8 @@
 	
 	
 	CGFloat commentButtonOriginX = fansLabelOriginX +
-																 fansLabel_.bounds.size.width +
-																 FansLabelToCommentsButtonMargin;
+	fansLabel_.bounds.size.width +
+	FansLabelToCommentsButtonMargin;
 	[commentsButton_ setFrame:CGRectMake(commentButtonOriginX,
 																			 self.frame.size.height/2,
 																			 17, 15)];

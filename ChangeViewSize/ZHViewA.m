@@ -9,6 +9,7 @@
 #import "ZHViewA.h"
 #import "ZHFooterView.h"
 #import "ZHHeaderView.h"
+#import "ZHMessageView.h"
 
 static NSString *title1 = @"这是view的center，一个CGPoint类型的值。";
 static NSString *string1 = @"The center is specified within the coordinate system of its superview and is measured in points. Setting this property changes the values of the frame properties accordingly.";
@@ -44,6 +45,9 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 
 @property (nonatomic, retain) NSArray *stringArray;
 @property (nonatomic, retain) NSArray *titleArray;
+@property (nonatomic, retain) ZHHeaderView *headerView;
+@property (nonatomic, retain) ZHMessageView *messageView;
+@property (nonatomic, retain) ZHFooterView *footerView;
 
 - (NSUInteger)stringRandomIndex;
 - (NSUInteger)titleRandomIndex;
@@ -57,12 +61,18 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-			self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
-			self.titleArray = @[title1,title2,title3,title4,title5,title6,title7,title8,title9,title10];
-    }
-    return self;
+	self = [super initWithFrame:frame];
+	if (self) {
+		self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
+		self.titleArray = @[title1,title2,title3,title4,title5,title6,title7,title8,title9,title10];
+		self.headerView = [[ZHHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+		self.messageView = [[ZHMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
+		self.footerView = [[ZHFooterView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+		[self addSubview:_headerView];
+		[self addSubview:_messageView];
+		[self addSubview:_footerView];
+	}
+	return self;
 }
 
 - (NSUInteger)stringRandomIndex
@@ -96,36 +106,39 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 	[button addTarget:self action:@selector(buttonCallback) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
 	
-
-	
-	ZHHeaderView *headerView = [[ZHHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-	[headerView setBackgroundColor:[UIColor lightGrayColor]];
-	[self addSubview:headerView];
 	
 	
-	ZHFooterView *footerView = [[ZHFooterView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	[footerView setBackgroundColor:[UIColor whiteColor]];
-	CGRect headerViewFrame = headerView.frame;
-	CGRect footerViewFrame = footerView.frame;
-	footerViewFrame.origin.y = headerViewFrame.origin.y + headerViewFrame.size.height;
-	[footerView setFrame:footerViewFrame];
-	[self addSubview:footerView];
 	
-	[footerView addFans:90 comments:6];
+	[_headerView setBackgroundColor:[UIColor lightGrayColor]];
+	
+	CGRect headerViewFrame = _headerView.frame;
+	
+	
+	[_messageView setBackgroundColor:[UIColor yellowColor]];
+	CGRect messageFrame = _messageView.frame;
+	messageFrame.origin.y = headerViewFrame.origin.y + headerViewFrame.size.height;
+	[_messageView setFrame:messageFrame];
+	
+	
+	
+	[_footerView setBackgroundColor:[UIColor whiteColor]];
+	
+	CGRect footerViewFrame = _footerView.frame;
+	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
+	[_footerView setFrame:footerViewFrame];
+	
+	
+	[_footerView addFans:190 comments:26];
 	
 	
 }
 
 
-//- (CGSize)sizeThatFits:(CGSize)size
-//{
-//	return CGSizeZero;
-//}
-
 - (void)buttonCallback
 {
-	//NSLog(@"%@",[self calculateString]);
-	NSLog(@"%@",[self calculateTitle]);
+//	NSLog(@"%@",[self calculateString]);
+//	NSLog(@"%@",[self calculateTitle]);
+	[_messageView addTitle:[self calculateTitle] andMessage:[self calculateString]];
 }
 
 @end

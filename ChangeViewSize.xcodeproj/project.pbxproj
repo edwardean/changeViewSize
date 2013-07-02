@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA21216C178334E9007CB631 /* ZHMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21216B178334E9007CB631 /* ZHMessageView.m */; };
 		CA51705B1782A828009B29B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA51705A1782A828009B29B5 /* UIKit.framework */; };
 		CA51705D1782A828009B29B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA51705C1782A828009B29B5 /* Foundation.framework */; };
 		CA51705F1782A828009B29B5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA51705E1782A828009B29B5 /* CoreGraphics.framework */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA21216A178334E9007CB631 /* ZHMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMessageView.h; sourceTree = "<group>"; };
+		CA21216B178334E9007CB631 /* ZHMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMessageView.m; sourceTree = "<group>"; };
 		CA5170571782A828009B29B5 /* ChangeViewSize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChangeViewSize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA51705A1782A828009B29B5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA51705C1782A828009B29B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				CA5170961782B479009B29B5 /* ZHHeaderView.m */,
 				CA5170981782B487009B29B5 /* ZHFooterView.h */,
 				CA5170991782B487009B29B5 /* ZHFooterView.m */,
+				CA21216A178334E9007CB631 /* ZHMessageView.h */,
+				CA21216B178334E9007CB631 /* ZHMessageView.m */,
 				CA5170921782A8BF009B29B5 /* ZHViewA.h */,
 				CA5170931782A8BF009B29B5 /* ZHViewA.m */,
 				CA5170611782A828009B29B5 /* Supporting Files */,
@@ -328,6 +333,7 @@
 				CA5170941782A8BF009B29B5 /* ZHViewA.m in Sources */,
 				CA5170971782B479009B29B5 /* ZHHeaderView.m in Sources */,
 				CA51709A1782B487009B29B5 /* ZHFooterView.m in Sources */,
+				CA21216C178334E9007CB631 /* ZHMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +506,7 @@
 				CA51708B1782A829009B29B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA51708C1782A829009B29B5 /* Build configuration list for PBXNativeTarget "ChangeViewSizeTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +515,7 @@
 				CA51708E1782A829009B29B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
