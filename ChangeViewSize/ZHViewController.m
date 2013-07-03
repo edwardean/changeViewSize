@@ -26,21 +26,41 @@
 
 - (void)loadView
 {
+  NSLog(@"view controller loadview ");
+  
 	ZHViewA *view = [[ZHViewA alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.view = view;
 }
 
 - (void)viewDidLoad
 {
+  NSLog(@"view controller did loadview");
 	[super viewDidLoad];
+  
 	[self.view setBackgroundColor:[UIColor whiteColor]];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+  NSLog(@"View Controller Will layout subviews");
+  
+}
+
+- (void)viewDidLayoutSubviews
+{
+  NSLog(@"View Controller Did layout subviews");
+  // layout custom subviews
 }
 
 @end

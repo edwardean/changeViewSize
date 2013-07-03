@@ -1,10 +1,10 @@
-//
+// 
 //  ZHFooterView.m
 //  ChangeViewSize
-//
+// 
 //  Created by Edward on 13-7-2.
 //  Copyright (c) 2013年 ZhiHu. All rights reserved.
-//
+// 
 
 #import "ZHFooterView.h"
 
@@ -57,7 +57,7 @@
 	[fansButton_ setImage:[UIImage imageNamed:@"ZHQuestionViewFollowingIcon@2x.png"]
 							 forState:UIControlStateNormal];
 	[fansButton_ setFrame:CGRectMake(MarginToLeftSide,
-																	 self.frame.size.height/2,
+																	 self.frame.size.height / 2,
 																	 imageSizeWidth, imageSizeHeigh)];
 	CGPoint fansButtonCenter = fansButton_.center;
 	fansButtonCenter.y = self.center.y;
@@ -68,7 +68,7 @@
 	[commentsButton_ setImage:[UIImage imageNamed:@"ZHQuestionViewCommentIcon@2x.png"]
 									 forState:UIControlStateNormal];
 	[commentsButton_ setFrame:CGRectMake(0,
-																			 self.frame.size.height/2,
+																			 self.frame.size.height / 2,
 																			 imageSizeWidth, imageSizeHeigh)];
 	CGPoint commentsButtonCenter = commentsButton_.center;
 	commentsButtonCenter.y = self.center.y;
@@ -87,8 +87,8 @@
 	self.favButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[favButton_ setFrame:CGRectMake(0, 0, 55, 30)];
 	[favButton_ setTitle:@"关注" forState:UIControlStateNormal];
-	[favButton_ setCenter:CGPointMake(320 - MarginToRightSide - favButton_.bounds.size.width/2,
-																		self.frame.size.height/2)];
+	[favButton_ setCenter:CGPointMake(320 - MarginToRightSide - favButton_.bounds.size.width / 2,
+																		self.frame.size.height / 2)];
 	[self addSubview:favButton_];
 	
 }
@@ -97,33 +97,41 @@
 {
 	fans = f;
 	comments = c;
+  [fansLabel_ setText:[NSString stringWithFormat:@"%i",fans]];
+  [commentsLabel_ setText:[NSString stringWithFormat:@"%i",comments]];
+  
 	[self setNeedsLayout];
 }
 
 - (void)layoutSubviews
 {
-	//NSLog(@"%s",__func__);
+	// NSLog(@"%s",__func__);
 	[super layoutSubviews];
-	CGFloat fansLabelOriginX = fansButton_.frame.origin.x
-	+fansButton_.frame.size.width + FansButtonToFansLabelMargin;
-	[fansLabel_ setFrame:CGRectMake(fansLabelOriginX,
-																	self.frame.size.height/2,
-																	0,0)];
-	[fansLabel_ setText:[NSString stringWithFormat:@"%i",fans]];
-	[fansLabel_ sizeToFit];
+  
+	CGFloat fansLabelOriginX = fansButton_.frame.origin.x + fansButton_.frame.size.width + FansButtonToFansLabelMargin;
+  
+  [fansLabel_ sizeToFit];
+#if 0
+  CGRect frame = fansLabel_.frame;
+  frame.origin = ;
+#endif
+  [fansLabel_ setFrame:CGRectMake(fansLabelOriginX,
+																	self.frame.size.height / 2,
+																	fansLabel_.frame.size.width,
+                                  fansLabel_.frame.size.height)];
+  
 	CGPoint fansLabelCenter = self.fansLabel.center;
-	fansLabelCenter.y = self.frame.size.height/2;
+	fansLabelCenter.y = self.frame.size.height / 2;
 	[fansLabel_ setCenter:fansLabelCenter];
 	
 	
-	CGFloat commentButtonOriginX = fansLabelOriginX +
-	fansLabel_.bounds.size.width +
-	FansLabelToCommentsButtonMargin;
+	CGFloat commentButtonOriginX = fansLabelOriginX + fansLabel_.bounds.size.width + FansLabelToCommentsButtonMargin;
 	[commentsButton_ setFrame:CGRectMake(commentButtonOriginX,
-																			 self.frame.size.height/2,
-																			 17, 15)];
+																			 self.frame.size.height / 2,
+																			 17,
+                                       15)];
 	CGPoint commentsButtonCenter = commentsButton_.center;
-	commentsButtonCenter.y = self.frame.size.height/2;
+	commentsButtonCenter.y = self.frame.size.height  / 2;
 	[commentsButton_ setCenter:commentsButtonCenter];
 	
 	
@@ -132,12 +140,11 @@
 	commentsButton_.bounds.size.width +
 	CommentsButtonToCommentsLabelMargin;
 	[commentsLabel_ setFrame:CGRectMake(commemtsLabelOriginX,
-																			self.frame.size.height/2,
+																			self.frame.size.height / 2,
 																			0, 0)];
-	[commentsLabel_ setText:[NSString stringWithFormat:@"%i",comments]];
 	[commentsLabel_ sizeToFit];
 	CGPoint commentsLabelCenter = commentsLabel_.center;
-	commentsLabelCenter.y = self.frame.size.height/2;
+	commentsLabelCenter.y = self.frame.size.height / 2;
 	[commentsLabel_ setCenter:commentsLabelCenter];
 	
 }
