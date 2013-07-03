@@ -9,7 +9,7 @@
 #import "ZHHeaderView.h"
 
 #define HeaderViewHeigh 					33
-#define FirstTagToLeftSideMargin	5		//第一个标签距离左边的距离
+#define FirstTagToLeftSideMargin	5		  //第一个标签距离左边的距离
 #define ListArrowButtonRightMargin 10		//右边箭头距离右边的距离
 #define MarginBetweenTags					3			//每两个tag标签的间距
 #define TagFont										12.0	//标签的字体大小
@@ -21,14 +21,15 @@
 	UILabel *tagLabel_;
 	CGSize tagSize_;
 	
-	CGFloat tagLabelOriginX;	//每个标签左边x坐标
-	CGFloat allTagWidth;			//用来计算所有标签宽度总和，若大于屏幕宽度则最后一个标签用...表示
-	CGFloat tagLabelWidth;		//每个标签的宽度
-	CGFloat maxTagWidth;			//所有标签的宽度总和
+	CGFloat tagLabelOriginX_;	//每个标签左边x坐标
+	CGFloat allTagWidth_;			//用来计算所有标签宽度总和，若大于屏幕宽度则最后一个标签用...表示
+	CGFloat tagLabelWidth_;		//每个标签的宽度
+	CGFloat maxTagWidth_;			//所有标签的宽度总和
 	
 }
 
 @property (nonatomic, retain) NSArray *tagArray;
+@property (nonatomic, strong, readwrite) NSMutableArray *tagViews;
 @property (nonatomic, retain) UIButton *moreButton;
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic, retain) UIImage *tagBackgroundImage;
@@ -67,7 +68,8 @@
 																						green:0.708
 																						 blue:0.943
 																						alpha:1.000]];
-		self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+		self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"] stretchableImageWithLeftCapWidth:10
+                                                                                                       topCapHeight:10];
 		[self setUp];
 	}
 	return self;
@@ -76,6 +78,15 @@
 - (void)addTagArray:(NSArray *)tags
 {
 	self.tagArray = tags;
+  
+  // TODO:
+  /**
+   create or reuse (tagView)
+   
+   */
+  
+  
+  
 	[self setNeedsLayout];
 }
 
@@ -91,21 +102,21 @@
 	listArrowButtonCenter.y = self.frame.size.height/2;
 	[moreButton_ setCenter:listArrowButtonCenter];
 	[self addSubview:moreButton_];
-	maxTagWidth = moreButton_.frame.origin.x;
+	maxTagWidth_ = moreButton_.frame.origin.x;
 }
 
 - (void)layoutSubviews
 {
 	//NSLog(@"%s",__func__);
 	[super layoutSubviews];
-	
+#if 0
 	for (id subView in self.subviews) {
     if ([subView isKindOfClass:[UIImageView class]]) {
 			[subView removeFromSuperview];
 		}
 	}
 	
-	allTagWidth = 0.0;
+	allTagWidth_ = 0.0;
 	[tagArray_ enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		
 		NSString *tagString = (NSString *)obj;
@@ -116,44 +127,46 @@
 		newFrame.size.width = expectedTagLabelSize.width;
 		tagLabel_.frame = newFrame;
 		
-		tagLabelWidth = newFrame.size.width;
+		tagLabelWidth_ = newFrame.size.width;
 		if (idx == 0) {
 			//设置第一个标签与左边缘的距离
-			tagLabelOriginX = FirstTagToLeftSideMargin;
+			tagLabelOriginX_ = FirstTagToLeftSideMargin;
 			
 		} else {
-			tagLabelOriginX += tagLabelWidth;
-			tagLabelOriginX = tagLabelOriginX + MarginBetweenTags;
+			tagLabelOriginX_ += tagLabelWidth_;
+			tagLabelOriginX_ = tagLabelOriginX_ + MarginBetweenTags;
 		}
 		
-		NSLog(@"%@  Width:%.0f  Origin:%.0f",tagString,tagLabelWidth,tagLabelOriginX);
+		NSLog(@"%@  Width:%.0f  Origin:%.0f",tagString,tagLabelWidth_,tagLabelOriginX_);
 		
-		allTagWidth += (tagLabelOriginX + tagLabelWidth);
+		allTagWidth_ += (tagLabelOriginX_ + tagLabelWidth_);
 		
-		if (allTagWidth >= maxTagWidth) {
+		if (allTagWidth_ >= maxTagWidth_) {
 			tagString = @"...";
-			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
+			[self addTagBackgroundByX:tagLabelOriginX_ Width:tagLabelWidth_ TagTitle:tagString];
 			*stop = YES;
 		} else {
-			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
+			[self addTagBackgroundByX:tagLabelOriginX_ Width:tagLabelWidth_ TagTitle:tagString];
 		}
 		
 	}];
-	
+#endif
 }
 
 - (void)addTagBackgroundByX:(CGFloat)leftOrigin
 											Width:(CGFloat)tagWidth
 									 TagTitle:(NSString *)tagTitle
 {
-	
+  
 	CGRect tagFrame = tagLabel_.frame;
 	tagFrame.origin.x = leftOrigin;
 	tagFrame.origin.y = self.frame.size.height/2 - TagHeight/2;
 	
 	UIImageView *labelBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(leftOrigin, tagFrame.origin.y, tagWidth, TagHeight)];
 	
+  // FIXME :
 	UILabel *label = [[UILabel alloc] initWithFrame:tagFrame];
+  
 	[label setText:tagTitle];
 	[label setTextAlignment:NSTextAlignmentCenter];
 	[label setBackgroundColor:[UIColor colorWithPatternImage:tagBackgroundImage_]];

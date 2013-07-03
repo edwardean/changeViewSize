@@ -83,6 +83,7 @@ static NSString *tag15 = @"爱情";
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+    NSLog(@"Class View A init");
 		self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
 		self.titleArray = @[title1,title2,title3,title4,title5,title6,title7,title8,title9,title10];
 		self.tagArray = @[tag1,tag2,tag3,tag4,tag5,tag6,tag7,tag8,tag9,tag10,tag11,tag12,tag13,tag14,tag15];
@@ -92,6 +93,16 @@ static NSString *tag15 = @"爱情";
 		[self addSubview:_headerView];
 		[self addSubview:_messageView];
 		[self addSubview:_footerView];
+    
+    //NSLog(@"%s",__func__);
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"测试" forState:UIControlStateNormal];
+    [button setFrame:CGRectMake(0, 0, 60, 35)];
+    [button setCenter:CGPointMake(200, 350)];
+    [button addTarget:self
+               action:@selector(buttonCallback)
+     forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
 	}
 	return self;
 }
@@ -142,43 +153,47 @@ static NSString *tag15 = @"爱情";
 
 - (void)layoutSubviews
 {
+  NSLog(@"Class View A layoutsubviews");
 	[super layoutSubviews];
-	//NSLog(@"%s",__func__);
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[button setTitle:@"测试" forState:UIControlStateNormal];
-	[button setFrame:CGRectMake(0, 0, 60, 35)];
-	[button setCenter:CGPointMake(200, 350)];
-	[button addTarget:self action:@selector(buttonCallback) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:button];
 	
-	
+  // header
+	[_headerView sizeToFit];
 	[_headerView setBackgroundColor:[UIColor whiteColor]];
-	CGRect headerViewFrame = _headerView.frame;
 	
-	
+  // messages
+  CGRect headerViewFrame = _headerView.frame;
+	[_messageView sizeToFit];
 	[_messageView setBackgroundColor:[UIColor yellowColor]];
 	CGRect messageFrame = _messageView.frame;
 	messageFrame.origin.y = headerViewFrame.origin.y + headerViewFrame.size.height;
 	[_messageView setFrame:messageFrame];
 	
-	
-	
+  // footer
+	[_footerView sizeToFit];
 	[_footerView setBackgroundColor:[UIColor greenColor]];
-	
 	CGRect footerViewFrame = _footerView.frame;
 	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
 	[_footerView setFrame:footerViewFrame];
-	
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+  NSLog(@"Class ViewA did Call sizeThatFits:");
+  
+  return CGSizeMake(320, self.frame.size.height/2);
 }
 
 
 - (void)buttonCallback
 {
-	
 	[_messageView addTitle:[self calculateTitle] andMessage:[self calculateString]];
+  
 	NSArray *array = [self randomTagSubArray];
 	[_headerView addTagArray:array];
+  
 	[_footerView addFans:arc4random() % 10000 comments:arc4random() % 10000];
+  
+  [self setNeedsLayout];
 }
 
 @end
