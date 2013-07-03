@@ -113,8 +113,9 @@ static NSString *tag15 = @"爱情";
 
 - (NSUInteger)tagArrayRandomLength
 {
-	return arc4random() % 5;
+	return arc4random() % 10;
 }
+
 - (NSRange)rangeRandom
 {
 	NSUInteger loc = [self tagRandomIndex];
@@ -151,8 +152,6 @@ static NSString *tag15 = @"爱情";
 	[self addSubview:button];
 	
 	
-	
-	
 	[_headerView setBackgroundColor:[UIColor whiteColor]];
 	CGRect headerViewFrame = _headerView.frame;
 	
@@ -175,9 +174,10 @@ static NSString *tag15 = @"爱情";
 
 - (void)buttonCallback
 {
-
+	
 	[_messageView addTitle:[self calculateTitle] andMessage:[self calculateString]];
-	[_headerView addTagArray:[self randomTagSubArray]];
+	NSArray *array = [self randomTagSubArray];
+	[_headerView addTagArray:array];
 	[_footerView addFans:arc4random() % 10000 comments:arc4random() % 10000];
 }
 

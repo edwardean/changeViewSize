@@ -24,6 +24,7 @@
 	CGFloat tagLabelOriginX;	//每个标签左边x坐标
 	CGFloat allTagWidth;			//用来计算所有标签宽度总和，若大于屏幕宽度则最后一个标签用...表示
 	CGFloat tagLabelWidth;		//每个标签的宽度
+	CGFloat maxTagWidth;			//所有标签的宽度总和
 	
 }
 
@@ -59,7 +60,7 @@
 		tagLabel_.numberOfLines = 1;
 		tagLabel_.textAlignment = NSTextAlignmentCenter;
 		[tagLabel_ setContentMode:UIViewContentModeCenter];
-		tagSize_ = CGSizeMake(320, 20);
+		tagSize_ = CGSizeMake(320, TagHeight);
 		self.font = [UIFont systemFontOfSize:TagFont];
 		[tagLabel_ setFont:self.font];
 		[tagLabel_ setTextColor:[UIColor colorWithRed:0.437
@@ -90,6 +91,7 @@
 	listArrowButtonCenter.y = self.frame.size.height/2;
 	[moreButton_ setCenter:listArrowButtonCenter];
 	[self addSubview:moreButton_];
+	maxTagWidth = moreButton_.frame.origin.x;
 }
 
 - (void)layoutSubviews
@@ -103,30 +105,33 @@
 		}
 	}
 	
-	if ([tagArray_ count] > 0) {
-		for (int i=0; i<[tagArray_ count]; i++) {
-			NSString *tagString = [tagArray_ objectAtIndex:i];
-			NSLog(@"%@",tagString);
-			tagLabel_.text = tagString;
-			CGSize expectedTagLabelSize = [tagString sizeWithFont:font_
-																					constrainedToSize:tagSize_];
-			CGRect newFrame = tagLabel_.frame;
-			newFrame.size.width = expectedTagLabelSize.width;
-			tagLabel_.frame = newFrame;
-//			[tagLabel_ setBackgroundColor:[UIColor colorWithPatternImage:
-//																		 tagBackgroundImage_]];
+	allTagWidth = 0.0;
+	[tagArray_ enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		NSString *tagString = (NSString *)obj;
+		CGSize expectedTagLabelSize = [tagString sizeWithFont:font_
+																				constrainedToSize:tagSize_];
+		
+		CGRect newFrame = tagLabel_.frame;
+		newFrame.size.width = expectedTagLabelSize.width;
+		tagLabel_.frame = newFrame;
+		
+		tagLabelWidth = newFrame.size.width;
+		if (idx == 0) {
+			//设置第一个标签与左边缘的距离
+			tagLabelOriginX = FirstTagToLeftSideMargin;
 			
-			tagLabelWidth = newFrame.size.width;
-			if (i == 0) {
-				//设置第一个标签与左边缘的距离
-				tagLabelOriginX = FirstTagToLeftSideMargin;
-				
-			}
-			tagLabelOriginX = tagLabelWidth + MarginBetweenTags;
-			[self addTagBackgroundByX:tagLabelOriginX Width:0.0 TagTitle:tagString];
-			
+		} else tagLabelOriginX += (tagLabelWidth + MarginBetweenTags);
+		allTagWidth += (tagLabelOriginX + tagLabelWidth);
+		if (allTagWidth >= maxTagWidth) {
+			tagString = @"...";
+			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
+			*stop = YES;
+		} else {
+			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
 		}
-	}
+		NSLog(@"%@  Size:%@",tagString,NSStringFromCGSize(tagLabel_.frame.size));
+	}];
+	
 }
 
 - (void)addTagBackgroundByX:(CGFloat)leftOrigin
@@ -137,8 +142,6 @@
 	CGRect tagFrame = tagLabel_.frame;
 	tagFrame.origin.x = leftOrigin;
 	tagFrame.origin.y = self.frame.size.height/2 - TagHeight/2;
-	//	tagLabel_.frame = tagFrame;
-	//	[self addSubview:tagLabel_];
 	
 	UIImageView *labelBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(leftOrigin, tagFrame.origin.y, tagWidth, TagHeight)];
 	
@@ -152,8 +155,7 @@
 																			alpha:1.000]];
 	[label setFont:self.font];
 	[labelBackgroundImageView addSubview:label];
-	[self addSubview:labelBackgroundImageView];
-	
+	[self addSubview:labelBackgroundImageView];	
 }
 
 @end
