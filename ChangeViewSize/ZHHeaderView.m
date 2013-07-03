@@ -24,7 +24,7 @@
 	CGFloat tagLabelOriginX;	//每个标签左边x坐标
 	CGFloat allTagWidth;			//用来计算所有标签宽度总和，若大于屏幕宽度则最后一个标签用...表示
 	CGFloat tagLabelWidth;		//每个标签的宽度
-
+	
 }
 
 @property (nonatomic, retain) NSArray *tagArray;
@@ -62,7 +62,10 @@
 		tagSize_ = CGSizeMake(320, 20);
 		self.font = [UIFont systemFontOfSize:TagFont];
 		[tagLabel_ setFont:self.font];
-		[tagLabel_ setTextColor:[UIColor colorWithRed:0.437 green:0.708 blue:0.943 alpha:1.000]];
+		[tagLabel_ setTextColor:[UIColor colorWithRed:0.437
+																						green:0.708
+																						 blue:0.943
+																						alpha:1.000]];
 		self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
 		[self setUp];
 	}
@@ -87,16 +90,6 @@
 	listArrowButtonCenter.y = self.frame.size.height/2;
 	[moreButton_ setCenter:listArrowButtonCenter];
 	[self addSubview:moreButton_];
-	
-	UIImage *image = [UIImage imageNamed:@"ZHQuestionViewTopicBase.png"];
-	
-	
-	UIImage *stretchImage1 = [image stretchableImageWithLeftCapWidth:10
-																											topCapHeight:10];
-	UIImageView *imageView1 = [[UIImageView alloc] initWithImage:stretchImage1];
-	[imageView1 setFrame:CGRectMake(0, 0, 50, 22)];
-	[imageView1 setCenter:CGPointMake(50, self.frame.size.height/2)];
-	[self addSubview:imageView1];
 }
 
 - (void)layoutSubviews
@@ -128,12 +121,12 @@
 				//设置第一个标签与左边缘的距离
 				tagLabelOriginX = FirstTagToLeftSideMargin;
 				
-				}
-		tagLabelOriginX = tagLabelWidth + MarginBetweenTags;
-		[self addTagBackgroundByX:tagLabelOriginX Width:0.0 TagTitle:tagString];
+			}
+			tagLabelOriginX = tagLabelWidth + MarginBetweenTags;
+			[self addTagBackgroundByX:tagLabelOriginX Width:0.0 TagTitle:tagString];
 			
-		 }
-	 }
+		}
+	}
 }
 
 - (void)addTagBackgroundByX:(CGFloat)leftOrigin
@@ -144,14 +137,17 @@
 	CGRect tagFrame = tagLabel_.frame;
 	tagFrame.origin.x = leftOrigin;
 	tagFrame.origin.y = self.frame.size.height/2 - TagHeight/2;
-//	tagLabel_.frame = tagFrame;
-//	[self addSubview:tagLabel_];
+	//	tagLabel_.frame = tagFrame;
+	//	[self addSubview:tagLabel_];
 	
 	UILabel *label = [[UILabel alloc] initWithFrame:tagFrame];
 	[label setText:tagTitle];
 	[label setTextAlignment:NSTextAlignmentCenter];
 	[label setBackgroundColor:[UIColor colorWithPatternImage:tagBackgroundImage_]];
-	[label setTextColor:[UIColor colorWithRed:0.437 green:0.708 blue:0.943 alpha:1.000]];
+	[label setTextColor:[UIColor colorWithRed:0.437
+																			green:0.708
+																			 blue:0.943
+																			alpha:1.000]];
 	[label setFont:self.font];
 	[self addSubview:label];
 	
