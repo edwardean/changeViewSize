@@ -9,9 +9,9 @@
 #import "ZHHeaderView.h"
 
 #define HeaderViewHeigh 					33
-#define FirstTagToLeftSideMargin	10		//第一个标签距离左边的距离
+#define FirstTagToLeftSideMargin	5		//第一个标签距离左边的距离
 #define ListArrowButtonRightMargin 10		//右边箭头距离右边的距离
-#define MarginBetweenTags					5			//每两个tag标签的间距
+#define MarginBetweenTags					3			//每两个tag标签的间距
 #define TagFont										12.0	//标签的字体大小
 #define TagCapWidth								8			//标签文本离背景图片两边的距离
 #define TagHeight									22		//标签高度
@@ -107,6 +107,7 @@
 	
 	allTagWidth = 0.0;
 	[tagArray_ enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		
 		NSString *tagString = (NSString *)obj;
 		CGSize expectedTagLabelSize = [tagString sizeWithFont:font_
 																				constrainedToSize:tagSize_];
@@ -120,8 +121,15 @@
 			//设置第一个标签与左边缘的距离
 			tagLabelOriginX = FirstTagToLeftSideMargin;
 			
-		} else tagLabelOriginX += (tagLabelWidth + MarginBetweenTags);
+		} else {
+			tagLabelOriginX += tagLabelWidth;
+			tagLabelOriginX = tagLabelOriginX + MarginBetweenTags;
+		}
+		
+		NSLog(@"%@  Width:%.0f  Origin:%.0f",tagString,tagLabelWidth,tagLabelOriginX);
+		
 		allTagWidth += (tagLabelOriginX + tagLabelWidth);
+		
 		if (allTagWidth >= maxTagWidth) {
 			tagString = @"...";
 			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
@@ -129,7 +137,7 @@
 		} else {
 			[self addTagBackgroundByX:tagLabelOriginX Width:tagLabelWidth TagTitle:tagString];
 		}
-		NSLog(@"%@  Size:%@",tagString,NSStringFromCGSize(tagLabel_.frame.size));
+		
 	}];
 	
 }
@@ -155,7 +163,7 @@
 																			alpha:1.000]];
 	[label setFont:self.font];
 	[labelBackgroundImageView addSubview:label];
-	[self addSubview:labelBackgroundImageView];	
+	[self addSubview:labelBackgroundImageView];
 }
 
 @end
