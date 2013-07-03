@@ -170,10 +170,6 @@ static NSString *tag15 = @"爱情";
 	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
 	[_footerView setFrame:footerViewFrame];
 	
-	
-	[_footerView addFans:190 comments:26];
-	
-	
 }
 
 
@@ -182,6 +178,7 @@ static NSString *tag15 = @"爱情";
 
 	[_messageView addTitle:[self calculateTitle] andMessage:[self calculateString]];
 	[_headerView addTagArray:[self randomTagSubArray]];
+	[_footerView addFans:arc4random() % 10000 comments:arc4random() % 10000];
 }
 
 @end
