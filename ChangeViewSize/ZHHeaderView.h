@@ -10,6 +10,10 @@
 
 @interface ZHHeaderView : UIView
 
+/**
+ * Tag标签数组
+ * @param tags 标签数组
+ **/
 - (void)addTagArray:(NSArray *)tags;
 
 @end

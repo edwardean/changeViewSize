@@ -76,9 +76,11 @@
 	[self addSubview:commentsButton_];
 	
 	self.fansLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	[fansLabel_ setBackgroundColor:[UIColor clearColor]];
 	[self addSubview:fansLabel_];
 	
 	self.commentsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	[commentsLabel_ setBackgroundColor:[UIColor clearColor]];
 	[self addSubview:commentsLabel_];
 	
 	
@@ -100,7 +102,7 @@
 
 - (void)layoutSubviews
 {
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 	[super layoutSubviews];
 	CGFloat fansLabelOriginX = fansButton_.frame.origin.x
 	+fansButton_.frame.size.width + FansButtonToFansLabelMargin;

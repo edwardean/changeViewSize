@@ -28,25 +28,25 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-			self.titleFont = [UIFont systemFontOfSize:TitleFontSize];
-			self.messageFont = [UIFont systemFontOfSize:MessageFontSize];
-			
-			self.maxSize = CGSizeMake(self.frame.size.width, 1100);
-			self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-			self.messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-			[_titleLabel setNumberOfLines:0];
-			[_messageLabel setNumberOfLines:0];
-			[_titleLabel setBackgroundColor:[UIColor clearColor]];
-			[_messageLabel setBackgroundColor:[UIColor clearColor]];
-			[_titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
-			[_messageLabel setLineBreakMode:NSLineBreakByWordWrapping];
-			[self addSubview:_titleLabel];
-			[self addSubview:_messageLabel];
-			
-    }
-    return self;
+	self = [super initWithFrame:frame];
+	if (self) {
+		self.titleFont = [UIFont systemFontOfSize:TitleFontSize];
+		self.messageFont = [UIFont systemFontOfSize:MessageFontSize];
+		
+		self.maxSize = CGSizeMake(self.frame.size.width, 1100);
+		self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		self.messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		[_titleLabel setNumberOfLines:0];
+		[_messageLabel setNumberOfLines:0];
+		[_titleLabel setBackgroundColor:[UIColor clearColor]];
+		[_messageLabel setBackgroundColor:[UIColor clearColor]];
+		[_titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+		[_messageLabel setLineBreakMode:NSLineBreakByWordWrapping];
+		[self addSubview:_titleLabel];
+		[self addSubview:_messageLabel];
+		
+	}
+	return self;
 }
 
 - (void)addTitle:(NSString *)title andMessage:(NSString *)message
@@ -58,7 +58,7 @@
 
 - (void)layoutSubviews
 {
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 	[super layoutSubviews];
 	CGPoint messageOrigin = CGPointZero;
 	

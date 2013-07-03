@@ -30,10 +30,10 @@
 		CA5170A01782B827009B29B5 /* ZHQuestionViewCommentIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA51709C1782B827009B29B5 /* ZHQuestionViewCommentIcon@2x.png */; };
 		CA5170A11782B827009B29B5 /* ZHQuestionViewFollowingIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CA51709D1782B827009B29B5 /* ZHQuestionViewFollowingIcon.png */; };
 		CA5170A21782B827009B29B5 /* ZHQuestionViewFollowingIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA51709E1782B827009B29B5 /* ZHQuestionViewFollowingIcon@2x.png */; };
-		CA5170A61782CF5B009B29B5 /* ZHQuestionViewTopicBase.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5170A41782CF5B009B29B5 /* ZHQuestionViewTopicBase.png */; };
-		CA5170A71782CF5B009B29B5 /* ZHQuestionViewTopicBase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5170A51782CF5B009B29B5 /* ZHQuestionViewTopicBase@2x.png */; };
 		CA5170AA1782D537009B29B5 /* ZHListViewArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5170A81782D537009B29B5 /* ZHListViewArrowRight.png */; };
 		CA5170AB1782D537009B29B5 /* ZHListViewArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5170A91782D537009B29B5 /* ZHListViewArrowRight@2x.png */; };
+		CA6D5D241783BD7600259CBA /* ZHQuestionViewTopicBase.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */; };
+		CA6D5D251783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D5D231783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,10 +80,10 @@
 		CA51709C1782B827009B29B5 /* ZHQuestionViewCommentIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ZHQuestionViewCommentIcon@2x.png"; path = "../ZHQuestionViewCommentIcon@2x.png"; sourceTree = "<group>"; };
 		CA51709D1782B827009B29B5 /* ZHQuestionViewFollowingIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ZHQuestionViewFollowingIcon.png; path = ../ZHQuestionViewFollowingIcon.png; sourceTree = "<group>"; };
 		CA51709E1782B827009B29B5 /* ZHQuestionViewFollowingIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ZHQuestionViewFollowingIcon@2x.png"; path = "../ZHQuestionViewFollowingIcon@2x.png"; sourceTree = "<group>"; };
-		CA5170A41782CF5B009B29B5 /* ZHQuestionViewTopicBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZHQuestionViewTopicBase.png; sourceTree = SOURCE_ROOT; };
-		CA5170A51782CF5B009B29B5 /* ZHQuestionViewTopicBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZHQuestionViewTopicBase@2x.png"; sourceTree = SOURCE_ROOT; };
 		CA5170A81782D537009B29B5 /* ZHListViewArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZHListViewArrowRight.png; sourceTree = SOURCE_ROOT; };
 		CA5170A91782D537009B29B5 /* ZHListViewArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZHListViewArrowRight@2x.png"; sourceTree = SOURCE_ROOT; };
+		CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZHQuestionViewTopicBase.png; sourceTree = SOURCE_ROOT; };
+		CA6D5D231783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZHQuestionViewTopicBase@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,10 +197,10 @@
 		CA5170A31782B82C009B29B5 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */,
+				CA6D5D231783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png */,
 				CA5170A81782D537009B29B5 /* ZHListViewArrowRight.png */,
 				CA5170A91782D537009B29B5 /* ZHListViewArrowRight@2x.png */,
-				CA5170A41782CF5B009B29B5 /* ZHQuestionViewTopicBase.png */,
-				CA5170A51782CF5B009B29B5 /* ZHQuestionViewTopicBase@2x.png */,
 				CA51709B1782B827009B29B5 /* ZHQuestionViewCommentIcon.png */,
 				CA51709C1782B827009B29B5 /* ZHQuestionViewCommentIcon@2x.png */,
 				CA51709D1782B827009B29B5 /* ZHQuestionViewFollowingIcon.png */,
@@ -289,10 +289,10 @@
 				CA5170A01782B827009B29B5 /* ZHQuestionViewCommentIcon@2x.png in Resources */,
 				CA5170A11782B827009B29B5 /* ZHQuestionViewFollowingIcon.png in Resources */,
 				CA5170A21782B827009B29B5 /* ZHQuestionViewFollowingIcon@2x.png in Resources */,
-				CA5170A61782CF5B009B29B5 /* ZHQuestionViewTopicBase.png in Resources */,
-				CA5170A71782CF5B009B29B5 /* ZHQuestionViewTopicBase@2x.png in Resources */,
 				CA5170AA1782D537009B29B5 /* ZHListViewArrowRight.png in Resources */,
 				CA5170AB1782D537009B29B5 /* ZHListViewArrowRight@2x.png in Resources */,
+				CA6D5D241783BD7600259CBA /* ZHQuestionViewTopicBase.png in Resources */,
+				CA6D5D251783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,10 +434,12 @@
 		CA51708A1782A829009B29B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hang Li (B4WB78DCEG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChangeViewSize/ChangeViewSize-Prefix.pch";
 				INFOPLIST_FILE = "ChangeViewSize/ChangeViewSize-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "72E76468-5FD0-4859-A66A-3C404D67FEEE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -445,10 +447,12 @@
 		CA51708B1782A829009B29B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hang Li (B4WB78DCEG)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChangeViewSize/ChangeViewSize-Prefix.pch";
 				INFOPLIST_FILE = "ChangeViewSize/ChangeViewSize-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "72E76468-5FD0-4859-A66A-3C404D67FEEE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

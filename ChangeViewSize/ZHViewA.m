@@ -41,10 +41,29 @@ static NSString *string9 = @"Adds a view to the end of the receiver’s list of 
 static NSString *title10 = @"通知视图控制器app收到了低内存警告，要求viewController进行内存释放的操作。";
 static NSString *string10 = @"Sent to the view controller when the app receives a memory warning. Your app never calls this method directly. Instead, this method is called when the system determines that the amount of available memory is low. You can override this method to release any additional memory used by your view controller. If you do, your implementation of this method must call the super implementation at some point.";
 
+
+static NSString *tag1 = @"电影";
+static NSString *tag2 = @"工作";
+static NSString *tag3 = @"文学";
+static NSString *tag4 = @"生活";
+static NSString *tag5 = @"调查类问题";
+static NSString *tag6 = @"旅游推荐";
+static NSString *tag7 = @"人际交往";
+static NSString *tag8 = @"社交网络";
+static NSString *tag9 = @"心理学";
+static NSString *tag10 = @"历史";
+static NSString *tag11 = @"iPhone";
+static NSString *tag12 = @"女性";
+static NSString *tag13 = @"老外";
+static NSString *tag14 = @"乔布斯";
+static NSString *tag15 = @"爱情";
+
 @interface ZHViewA ()
 
 @property (nonatomic, retain) NSArray *stringArray;
 @property (nonatomic, retain) NSArray *titleArray;
+@property (nonatomic, retain) NSArray *tagArray;
+
 @property (nonatomic, retain) ZHHeaderView *headerView;
 @property (nonatomic, retain) ZHMessageView *messageView;
 @property (nonatomic, retain) ZHFooterView *footerView;
@@ -58,6 +77,7 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 
 @synthesize stringArray = stringArray_;
 @synthesize titleArray = titleArray_;
+@synthesize tagArray = tagArray_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -65,6 +85,7 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 	if (self) {
 		self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
 		self.titleArray = @[title1,title2,title3,title4,title5,title6,title7,title8,title9,title10];
+		self.tagArray = @[tag1,tag2,tag3,tag4,tag5,tag6,tag7,tag8,tag9,tag10,tag11,tag12,tag13,tag14,tag15];
 		self.headerView = [[ZHHeaderView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
 		self.messageView = [[ZHMessageView alloc] initWithFrame:CGRectMake(0, 0, 320, 0)];
 		self.footerView = [[ZHFooterView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -85,6 +106,29 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 	return arc4random() % [titleArray_ count];
 }
 
+- (NSUInteger)tagRandomIndex
+{
+	return arc4random() % [tagArray_ count];
+}
+
+- (NSUInteger)tagArrayRandomLength
+{
+	return arc4random() % 5;
+}
+- (NSRange)rangeRandom
+{
+	NSUInteger loc = [self tagRandomIndex];
+	NSUInteger length = [self tagArrayRandomLength];
+	if ((tagArray_.count - loc) < length) {
+		length = tagArray_.count - loc;
+	}
+	return NSMakeRange(loc, length);
+}
+
+- (NSArray *)randomTagSubArray
+{
+	return [tagArray_ subarrayWithRange:[self rangeRandom]];
+}
 - (NSString *)calculateString
 {
 	return [stringArray_ objectAtIndex:[self stringRandomIndex]];
@@ -98,19 +142,18 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[button setTitle:@"TapMe" forState:UIControlStateNormal];
+	[button setTitle:@"测试" forState:UIControlStateNormal];
 	[button setFrame:CGRectMake(0, 0, 60, 35)];
-	[button setCenter:self.center];
+	[button setCenter:CGPointMake(200, 350)];
 	[button addTarget:self action:@selector(buttonCallback) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
 	
 	
 	
 	
-	[_headerView setBackgroundColor:[UIColor lightGrayColor]];
-	
+	[_headerView setBackgroundColor:[UIColor whiteColor]];
 	CGRect headerViewFrame = _headerView.frame;
 	
 	
@@ -121,7 +164,7 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 	
 	
 	
-	[_footerView setBackgroundColor:[UIColor whiteColor]];
+	[_footerView setBackgroundColor:[UIColor greenColor]];
 	
 	CGRect footerViewFrame = _footerView.frame;
 	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
@@ -136,9 +179,9 @@ static NSString *string10 = @"Sent to the view controller when the app receives 
 
 - (void)buttonCallback
 {
-//	NSLog(@"%@",[self calculateString]);
-//	NSLog(@"%@",[self calculateTitle]);
+
 	[_messageView addTitle:[self calculateTitle] andMessage:[self calculateString]];
+	[_headerView addTagArray:[self randomTagSubArray]];
 }
 
 @end
