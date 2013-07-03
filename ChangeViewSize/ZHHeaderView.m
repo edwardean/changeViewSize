@@ -98,7 +98,7 @@
 	[super layoutSubviews];
 	
 	for (id subView in self.subviews) {
-    if ([subView isKindOfClass:[UILabel class]]) {
+    if ([subView isKindOfClass:[UIImageView class]]) {
 			[subView removeFromSuperview];
 		}
 	}
@@ -113,8 +113,8 @@
 			CGRect newFrame = tagLabel_.frame;
 			newFrame.size.width = expectedTagLabelSize.width;
 			tagLabel_.frame = newFrame;
-			[tagLabel_ setBackgroundColor:[UIColor colorWithPatternImage:
-																		 tagBackgroundImage_]];
+//			[tagLabel_ setBackgroundColor:[UIColor colorWithPatternImage:
+//																		 tagBackgroundImage_]];
 			
 			tagLabelWidth = newFrame.size.width;
 			if (i == 0) {
@@ -140,6 +140,8 @@
 	//	tagLabel_.frame = tagFrame;
 	//	[self addSubview:tagLabel_];
 	
+	UIImageView *labelBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(leftOrigin, tagFrame.origin.y, tagWidth, TagHeight)];
+	
 	UILabel *label = [[UILabel alloc] initWithFrame:tagFrame];
 	[label setText:tagTitle];
 	[label setTextAlignment:NSTextAlignmentCenter];
@@ -149,7 +151,8 @@
 																			 blue:0.943
 																			alpha:1.000]];
 	[label setFont:self.font];
-	[self addSubview:label];
+	[labelBackgroundImageView addSubview:label];
+	[self addSubview:labelBackgroundImageView];
 	
 }
 
