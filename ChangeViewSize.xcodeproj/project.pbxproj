@@ -116,6 +116,7 @@
 				CA5170601782A828009B29B5 /* ChangeViewSize */,
 				CA51707E1782A829009B29B5 /* ChangeViewSizeTests */,
 				CA5170591782A828009B29B5 /* Frameworks */,
+				CA5170A31782B82C009B29B5 /* Resource */,
 				CA5170581782A828009B29B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -163,7 +164,6 @@
 		CA5170611782A828009B29B5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CA5170A31782B82C009B29B5 /* Image */,
 				CA5170621782A828009B29B5 /* ChangeViewSize-Info.plist */,
 				CA5170631782A828009B29B5 /* InfoPlist.strings */,
 				CA5170661782A828009B29B5 /* main.m */,
@@ -194,7 +194,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CA5170A31782B82C009B29B5 /* Image */ = {
+		CA5170A31782B82C009B29B5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */,
@@ -206,7 +206,8 @@
 				CA51709D1782B827009B29B5 /* ZHQuestionViewFollowingIcon.png */,
 				CA51709E1782B827009B29B5 /* ZHQuestionViewFollowingIcon@2x.png */,
 			);
-			name = Image;
+			name = Resource;
+			path = ChangeViewSize;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

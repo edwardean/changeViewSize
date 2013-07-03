@@ -29,6 +29,7 @@
 }
 
 @property (nonatomic, retain) NSArray *tagArray;
+@property (nonatomic, retain, readwrite) NSMutableArray *tagLabelArray;
 @property (nonatomic, retain) UIButton *moreButton;
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic, retain) UIImage *tagBackgroundImage;
@@ -51,11 +52,13 @@
 @synthesize moreButton = moreButton_;
 @synthesize font = font_;
 @synthesize tagBackgroundImage = tagBackgroundImage_;
+@synthesize tagLabelArray = tagLabelArray_;
 
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+    NSLog(@"%s",__func__);
 		tagLabel_ = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, TagHeight)];
 		tagLabel_.numberOfLines = 1;
 		tagLabel_.textAlignment = NSTextAlignmentCenter;
@@ -68,6 +71,7 @@
 																						 blue:0.943
 																						alpha:1.000]];
 		self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    self.tagLabelArray = [NSMutableArray arrayWithCapacity:4];
 		[self setUp];
 	}
 	return self;
@@ -76,6 +80,12 @@
 - (void)addTagArray:(NSArray *)tags
 {
 	self.tagArray = tags;
+  
+  // >>>>>>>>
+  // >>>>>>>>
+  // >>>>>>>>
+  // >>>>>>>>
+  
 	[self setNeedsLayout];
 }
 
@@ -96,7 +106,7 @@
 
 - (void)layoutSubviews
 {
-	//NSLog(@"%s",__func__);
+	NSLog(@"%s",__func__);
 	[super layoutSubviews];
 	
 	for (id subView in self.subviews) {
@@ -126,7 +136,7 @@
 			tagLabelOriginX = tagLabelOriginX + MarginBetweenTags;
 		}
 		
-		NSLog(@"%@  Width:%.0f  Origin:%.0f",tagString,tagLabelWidth,tagLabelOriginX);
+		//NSLog(@"%@  Width:%.0f  Origin:%.0f",tagString,tagLabelWidth,tagLabelOriginX);
 		
 		allTagWidth += (tagLabelOriginX + tagLabelWidth);
 		
@@ -162,8 +172,10 @@
 																			 blue:0.943
 																			alpha:1.000]];
 	[label setFont:self.font];
+  
 	[labelBackgroundImageView addSubview:label];
 	[self addSubview:labelBackgroundImageView];
+  
 }
 
 @end

@@ -26,6 +26,7 @@
 
 - (void)loadView
 {
+  NSLog(@"%s",__func__);
 	ZHViewA *view = [[ZHViewA alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.view = view;
 }
@@ -42,5 +43,19 @@
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
 }
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+  NSLog(@"%s",__func__);
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+  NSLog(@"%s",__func__);
+}
+
 
 @end

@@ -46,6 +46,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
+    NSLog(@"%s",__func__);
 		[self setUp];
 	}
 	return self;
@@ -102,7 +103,7 @@
 
 - (void)layoutSubviews
 {
-	//NSLog(@"%s",__func__);
+	NSLog(@"%s",__func__);
 	[super layoutSubviews];
 	CGFloat fansLabelOriginX = fansButton_.frame.origin.x
 	+fansButton_.frame.size.width + FansButtonToFansLabelMargin;
