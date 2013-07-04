@@ -7,6 +7,7 @@
 //
 
 #import "ZHMessageView.h"
+#import "UIView+Frame.h"
 
 #define TitleFontSize			17
 #define MessageFontSize		13
@@ -83,8 +84,10 @@
 	if (self.titleLabel.text.length > 0) {
     CGSize lineSize = [self titleLabelSize];
     
-    [titleLabel_ setFrame:CGRectMake(0, 0, lineSize.width, lineSize.height)];
-    messageOrigin.y = titleLabel_.frame.origin.y + lineSize.height;
+    [titleLabel_ setWidth:lineSize.width];
+    [titleLabel_ setHeight:lineSize.height];
+    
+    messageOrigin.y = [titleLabel_ bottom];
 		
 	} else {
   	[titleLabel_ setFrame:CGRectZero];
@@ -93,10 +96,9 @@
 	if (self.messageLabel.text.length > 0) {
     CGSize messageSize = [self messageLabelSize];
 		
-    [messageLabel_ setFrame:CGRectMake(0,
-																			 messageOrigin.y,
-																			 messageSize.width,
-																			 messageSize.height)];
+    [messageLabel_ setY:messageOrigin.y];
+    [messageLabel_ setWidth:messageSize.width];
+    [messageLabel_ setHeight:messageSize.height];
   } else {
   	[messageLabel_ setFrame:CGRectZero];
   }

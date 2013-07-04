@@ -10,6 +10,7 @@
 #import "ZHFooterView.h"
 #import "ZHHeaderView.h"
 #import "ZHMessageView.h"
+#import "UIView+Frame.h"
 
 static NSString *title1 = @"这是view的center，一个CGPoint类型的值。";
 static NSString *string1 = @"The center is specified within the coordinate system of its superview and is measured in points. Setting this property changes the values of the frame properties accordingly.";
@@ -168,19 +169,12 @@ static NSString *tag15 = @"爱情";
 	[super layoutSubviews];
   
 	NSLog(@"%s",__func__);
-  
-  // Header View
-	CGRect headerViewFrame = headerView_.frame;
-  
+ 
   // Message View
-	CGRect messageFrame = messageView_.frame;
-	messageFrame.origin.y = headerViewFrame.origin.y + headerViewFrame.size.height;
-	[messageView_ setFrame:messageFrame];
-	
+	[messageView_ setY:[headerView_ bottom]];
+  
   // Footer View
-	CGRect footerViewFrame = footerView_.frame;
-	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
-	[footerView_ setFrame:footerViewFrame];
+  [footerView_ setY:[messageView_ bottom]];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size

@@ -7,6 +7,7 @@
 //
 
 #import "ZHFooterView.h"
+#import "UIView+Frame.h"
 
 #define FootherViewHeigh	44
 #define MarginToLeftSide	10
@@ -113,11 +114,15 @@
 	[super layoutSubviews];
   
   [fansLabel_ sizeToFit];
-	CGFloat fansLabelOriginX = fansButton_.frame.origin.x + fansButton_.frame.size.width + FansButtonToFansLabelMargin;
-  [fansLabel_ setFrame:CGRectMake(fansLabelOriginX, 0, self.fansLabel.frame.size.width, self.fansLabel.frame.size.height)];
-	CGPoint fansLabelCenter = self.fansLabel.center;
-	fansLabelCenter.y = self.frame.size.height / 2;
-	[fansLabel_ setCenter:fansLabelCenter];
+	//CGFloat fansLabelOriginX = fansButton_.frame.origin.x + fansButton_.frame.size.width + FansButtonToFansLabelMargin;
+  CGFloat fansLabelOriginX = [fansButton_ right] + FansButtonToFansLabelMargin;
+  //[fansLabel_ setFrame:CGRectMake(fansLabelOriginX, 0, self.fansLabel.frame.size.width, self.fansLabel.frame.size.height)];
+  [fansLabel_ setX:fansLabelOriginX];
+  
+//	CGPoint fansLabelCenter = self.fansLabel.center;
+//	fansLabelCenter.y = self.frame.size.height / 2;
+//	[fansLabel_ setCenter:fansLabelCenter];
+  [fansLabel_ setCenterY:[self height]/2];
   
   
 	CGFloat commentButtonOriginX = fansLabelOriginX + fansLabel_.frame.size.width +

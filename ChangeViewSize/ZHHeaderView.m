@@ -7,6 +7,7 @@
 //
 
 #import "ZHHeaderView.h"
+#import "UIView+Frame.h"
 
 #define FirstTagToLeftSideMargin	5			//第一个标签距离左边的距离
 #define ListArrowButtonRightMargin 10		//右边箭头距离右边的距离
@@ -15,6 +16,9 @@
 #define TagCapWidth								9			//标签文本离背景图片两边的距离
 #define TagCapHeightMargin				3			//标签文本距离图片上下两边的距离
 #define TagHeight									22		//标签高度
+
+#define ArrowListButtonWidth			10
+#define ArrowListButtonHeight			14
 
 @interface ZHHeaderView ()
 {
@@ -126,14 +130,14 @@
 {
   // Set the tag backgroundView array, max is 4
   self.moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[moreButton_ setFrame:CGRectMake(0, 0, 10, 14)];
+  [moreButton_ setWidth:ArrowListButtonWidth];
+  [moreButton_ setHeight:ArrowListButtonHeight];
 	[moreButton_ setImage:[UIImage imageNamed:@"ZHListViewArrowRight@2x.png"]
 							 forState:UIControlStateNormal];
-	CGSize size = moreButton_.bounds.size;
-	CGPoint listArrowButtonCenter;
-	listArrowButtonCenter.x = 320 - ListArrowButtonRightMargin - size.width/2;
-	listArrowButtonCenter.y = self.frame.size.height/2;
-	[moreButton_ setCenter:listArrowButtonCenter];
+
+  [moreButton_ setCenterX:(320 - ListArrowButtonRightMargin - [moreButton_ width]/2)];
+  [moreButton_ setCenterY:[self height]/2];
+  
 	[self addSubview:moreButton_];
 }
 
@@ -157,11 +161,22 @@
     } else {
       tagLabelOriginX += size.width + MarginBetweenTags * 2;
     }
-    [tagBackImageView setFrame:CGRectMake(tagLabelOriginX, 0, size.width + MarginBetweenTags * 2, TagHeight)];
-    [label setFrame:CGRectMake(TagCapWidth, TagCapHeightMargin, size.width, size.height)];
-    CGPoint tagCenter = tagBackImageView.center;
-    tagCenter.y = self.frame.size.height / 2;
-    [tagBackImageView setCenter:tagCenter];
+    
+    //[tagBackImageView setFrame:CGRectMake(tagLabelOriginX, 0, size.width + MarginBetweenTags * 2, TagHeight)];
+		// 可以替换为：
+    [tagBackImageView setX:tagLabelOriginX];
+    [tagBackImageView setWidth:size.width + MarginBetweenTags * 2];
+    [tagBackImageView setHeight:TagHeight];
+    
+    
+    //[label setFrame:CGRectMake(TagCapWidth, TagCapHeightMargin, size.width, size.height)];
+    // 可以替换为：
+    [label setX:TagCapWidth];
+    [label setY:TagCapHeightMargin];
+    [label setWidth:size.width];
+    [label setHeight:size.height];
+    
+    [tagBackImageView setCenterY:[self height]/2];
   }
 }
 
