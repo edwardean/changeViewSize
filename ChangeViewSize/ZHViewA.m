@@ -86,7 +86,7 @@ static NSString *tag15 = @"爱情";
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-    //NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
     
     // Set the data Arrays
 		self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
@@ -167,29 +167,39 @@ static NSString *tag15 = @"爱情";
 {
 	[super layoutSubviews];
   
-	//NSLog(@"%s",__func__);
-
+	NSLog(@"%s",__func__);
+  
+  // Header View
 	CGRect headerViewFrame = headerView_.frame;
   
+  // Message View
 	CGRect messageFrame = messageView_.frame;
 	messageFrame.origin.y = headerViewFrame.origin.y + headerViewFrame.size.height;
 	[messageView_ setFrame:messageFrame];
 	
+  // Footer View
 	CGRect footerViewFrame = footerView_.frame;
 	footerViewFrame.origin.y = messageFrame.origin.y + messageFrame.size.height;
 	[footerView_ setFrame:footerViewFrame];
-	
 }
 
+- (CGSize)sizeThatFits:(CGSize)size
+{
+  NSLog(@"%s",__func__);
+	return CGSizeMake(320, size.height);
+}
 
 - (void)buttonCallback
 {
+  // Random HeaderView Data
   NSArray *array = [self randomTagSubArray];
 	[headerView_ addTagArray:array];
   
+  // Random MessageView Data
 	[messageView_ addTitle:[self calculateTitle] andMessage:[self calculateString]];
   [messageView_ sizeToFit];
   
+  // Random FooterView Data
 	[footerView_ addFans:arc4random() % 1000 comments:arc4random() % 1000];
 }
 

@@ -42,7 +42,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-    //NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
 		[self setUp];
 	}
 	return self;
@@ -72,7 +72,7 @@
   UIColor *fontColor = [UIColor colorWithWhite:0.510 alpha:1.000];
   UIFont *textFont = [UIFont systemFontOfSize:14];
   
-  // 设置关注标签 
+  // 设置关注标签
 	self.fansLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	[fansLabel_ setBackgroundColor:[UIColor clearColor]];
   [fansLabel_ setTextColor:fontColor];
@@ -93,7 +93,7 @@
 	[favButton_ setFrame:CGRectMake(0, 0, 55, 30)];
 	[favButton_ setTitle:@"关注" forState:UIControlStateNormal];
 	[favButton_ setCenter:CGPointMake(320 - MarginToRightSide - favButton_.bounds.size.width/2,
-																		self.frame.size.height/2)];
+																		self.frame.size.height / 2)];
 	[self addSubview:favButton_];
 	
 }
@@ -109,7 +109,7 @@
 
 - (void)layoutSubviews
 {
-	//NSLog(@"%s",__func__);
+	NSLog(@"%s",__func__);
 	[super layoutSubviews];
   
   [fansLabel_ sizeToFit];
@@ -118,7 +118,7 @@
 	CGPoint fansLabelCenter = self.fansLabel.center;
 	fansLabelCenter.y = self.frame.size.height / 2;
 	[fansLabel_ setCenter:fansLabelCenter];
-		
+  
   
 	CGFloat commentButtonOriginX = fansLabelOriginX + fansLabel_.frame.size.width +
 	FansLabelToCommentsButtonMargin;
@@ -141,6 +141,5 @@
 	CGPoint commentsLabelCenter = commentsLabel_.center;
 	commentsLabelCenter.y = self.frame.size.height / 2;
 	[commentsLabel_ setCenter:commentsLabelCenter];
-  
 }
 @end

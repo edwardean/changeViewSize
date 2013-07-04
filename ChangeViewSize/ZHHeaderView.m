@@ -20,7 +20,7 @@
 {
 	CGSize tagSize_;
 	
-	CGFloat tagLabelOriginX;	//每个标签左边x坐标	
+	CGFloat tagLabelOriginX;	//每个标签左边x坐标
 }
 
 @property (nonatomic, strong, readwrite) NSArray *tagArray;
@@ -48,12 +48,12 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-    //NSLog(@"%s",__func__);
-			tagSize_ = CGSizeMake(320, TagHeight);
+    NSLog(@"%s",__func__);
+    tagSize_ = CGSizeMake(320, TagHeight);
     self.font = [UIFont systemFontOfSize:TagFont];
     self.label.numberOfLines = 1;
-
-		self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"]
+    
+    self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"]
                                stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
     self.tagLabelArray = [NSMutableArray arrayWithCapacity:4];
@@ -61,10 +61,10 @@
     for (int i=0; i<4; i++) {
       UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
       [imgView setImage:tagBackgroundImage_];
-      [self.tagImageArray addObject:imgView]; 
+      [self.tagImageArray addObject:imgView];
     }
-
-		[self setUp];
+    
+    [self setUp];
 	}
 	return self;
 }
@@ -112,9 +112,9 @@
     [self.label setTextAlignment:NSTextAlignmentRight];
     [self.label setBackgroundColor:[UIColor clearColor]];
     [self.label setTextColor:[UIColor colorWithRed:0.437
-                                        green:0.708
-                                         blue:0.943
-                                        alpha:1.000]];
+                                             green:0.708
+                                              blue:0.943
+                                             alpha:1.000]];
     [self.imgView addSubview:self.label];
     [self addSubview:self.imgView];
   }
@@ -141,27 +141,27 @@
 {
 	NSLog(@"%s",__func__);
 	[super layoutSubviews];
+  
 	NSString *title;
   UILabel *label;
   UIImageView *tagBackImageView;
   for (int i=0; i<[tagLabelArray_ count]; i++) {
     
-  label = [tagLabelArray_ objectAtIndex:i];
-  tagBackImageView = [tagImageArray_ objectAtIndex:i];
-  title = label.text;
-  CGSize size = [title sizeWithFont:font_ constrainedToSize:tagSize_];
+    label = [tagLabelArray_ objectAtIndex:i];
+    tagBackImageView = [tagImageArray_ objectAtIndex:i];
+    title = label.text;
+    CGSize size = [title sizeWithFont:font_ constrainedToSize:tagSize_];
     
-  if (i==0) {
-    tagLabelOriginX = FirstTagToLeftSideMargin;
-  } else {
-    tagLabelOriginX += size.width + MarginBetweenTags * 2;
-  }
-  [tagBackImageView setFrame:CGRectMake(tagLabelOriginX, 0, size.width + MarginBetweenTags * 2, TagHeight)];
-  [label setFrame:CGRectMake(TagCapWidth, TagCapHeightMargin, size.width, size.height)];
-  CGPoint tagCenter = tagBackImageView.center;
-  tagCenter.y = self.frame.size.height / 2;
-  [tagBackImageView setCenter:tagCenter];
-    
+    if (i==0) {
+      tagLabelOriginX = FirstTagToLeftSideMargin;
+    } else {
+      tagLabelOriginX += size.width + MarginBetweenTags * 2;
+    }
+    [tagBackImageView setFrame:CGRectMake(tagLabelOriginX, 0, size.width + MarginBetweenTags * 2, TagHeight)];
+    [label setFrame:CGRectMake(TagCapWidth, TagCapHeightMargin, size.width, size.height)];
+    CGPoint tagCenter = tagBackImageView.center;
+    tagCenter.y = self.frame.size.height / 2;
+    [tagBackImageView setCenter:tagCenter];
   }
 }
 

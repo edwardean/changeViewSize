@@ -11,4 +11,5 @@
 @interface ZHMessageView : UIView
 
 - (void)addTitle:(NSString *)title andMessage:(NSString *)message;
+
 @end

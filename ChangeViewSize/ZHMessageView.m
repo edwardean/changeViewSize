@@ -41,24 +41,24 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-  //NSLog(@"%s",__func__);
-	self.titleFont = [UIFont systemFontOfSize:TitleFontSize];
-	self.messageFont = [UIFont systemFontOfSize:MessageFontSize];
+    NSLog(@"%s",__func__);
+    self.titleFont = [UIFont systemFontOfSize:TitleFontSize];
+    self.messageFont = [UIFont systemFontOfSize:MessageFontSize];
 		
-	self.maxSize = CGSizeMake(self.frame.size.width, 200);
+    self.maxSize = CGSizeMake(self.frame.size.width, 200);
     
-	self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	self.messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-	[titleLabel_ setNumberOfLines:0];
-	[messageLabel_ setNumberOfLines:0];
-  [titleLabel_ setFont:self.titleFont];
-  [messageLabel_ setFont:self.messageFont];
-	[titleLabel_ setBackgroundColor:[UIColor clearColor]];
-	[messageLabel_ setBackgroundColor:[UIColor clearColor]];
-	[titleLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
-	[messageLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
-	[self addSubview:titleLabel_];
-	[self addSubview:messageLabel_];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    self.messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [titleLabel_ setNumberOfLines:0];
+    [messageLabel_ setNumberOfLines:0];
+    [titleLabel_ setFont:self.titleFont];
+    [messageLabel_ setFont:self.messageFont];
+    [titleLabel_ setBackgroundColor:[UIColor clearColor]];
+    [messageLabel_ setBackgroundColor:[UIColor clearColor]];
+    [titleLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
+    [messageLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
+    [self addSubview:titleLabel_];
+    [self addSubview:messageLabel_];
 		
 	}
 	return self;
@@ -75,7 +75,7 @@
 
 - (void)layoutSubviews
 {
-	//NSLog(@"%s",__func__);
+	NSLog(@"%s",__func__);
 	[super layoutSubviews];
   
 	CGPoint messageOrigin = CGPointZero;
@@ -106,14 +106,13 @@
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-  //NSLog(@"%s",__func__);
+  NSLog(@"%s",__func__);
   CGRect frame = self.frame;
   CGSize titleLabelSize = [self titleLabelSize];
   CGSize messageLabelSize  =[self messageLabelSize];
 	frame.size.height =  titleLabelSize.height + messageLabelSize.height;
   return frame.size;
 }
-
 
 
 #pragma mark - return Two Label Size
@@ -131,6 +130,5 @@
                             constrainedToSize:maxSize_
                                 lineBreakMode:self.messageLabel.lineBreakMode];
 }
-
 
 @end
