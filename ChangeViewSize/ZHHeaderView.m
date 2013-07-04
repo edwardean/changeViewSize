@@ -9,16 +9,16 @@
 #import "ZHHeaderView.h"
 #import "UIView+Frame.h"
 
-#define FirstTagToLeftSideMargin	5			//第一个标签距离左边的距离
+#define FirstTagToLeftSideMargin	 7		//第一个标签距离左边的距离
 #define ListArrowButtonRightMargin 10		//右边箭头距离右边的距离
-#define MarginBetweenTags					10		//每两个tag标签的间距
-#define TagFont										12.0	//标签的字体大小
-#define TagCapWidth								9			//标签文本离背景图片两边的距离
-#define TagCapHeightMargin				3			//标签文本距离图片上下两边的距离
-#define TagHeight									22		//标签高度
+#define MarginBetweenTags					 5		//每两个tag标签的间距
+#define TagFont										 12.0	//标签的字体大小
+#define TagCapWidth								 9		//标签文本离背景图片两边的距离
+#define TagCapHeightMargin				 3		//标签文本距离图片上下两边的距离
+#define TagHeight									 22		//标签高度
 
-#define ArrowListButtonWidth			10
-#define ArrowListButtonHeight			14
+#define ArrowListButtonWidth			 10
+#define ArrowListButtonHeight			 14
 
 @interface ZHHeaderView ()
 {
@@ -60,11 +60,12 @@
     self.tagBackgroundImage = [[UIImage imageNamed:@"ZHQuestionViewTopicBase.png"]
                                stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     
-    self.tagLabelArray = [NSMutableArray arrayWithCapacity:4];
-    self.tagImageArray = [NSMutableArray arrayWithCapacity:4];
+    self.tagLabelArray = [NSMutableArray array];
+    self.tagImageArray = [NSMutableArray array];
     for (int i=0; i<4; i++) {
       UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
       [imgView setImage:tagBackgroundImage_];
+      [imgView setHeight:TagHeight];
       [self.tagImageArray addObject:imgView];
     }
     
@@ -81,18 +82,23 @@
   NSUInteger count = [tagArray_ count];
   
   [self.tagLabelArray removeAllObjects];
-  if (count >= 3) {
-		for (int i=0; i<3; i++) {
+  
+  if (count >= 4) {
+		for (NSInteger i = 0; i < 4; i++) {
       tagString = [tagArray_ objectAtIndex:i];
       label = [[UILabel alloc] initWithFrame:CGRectZero];
       [label setText:tagString];
+      [label setY:TagCapHeightMargin];
+      [label setX:TagCapWidth];
       [tagLabelArray_ addObject:label];
     }
   } else {
-  	for (int i=0; i<count; i++) {
+  	for (NSInteger i = 0; i < count; i++) {
       tagString = [tagArray_ objectAtIndex:i];
       label = [[UILabel alloc] initWithFrame:CGRectZero];
       [label setText:tagString];
+      [label setY:TagCapHeightMargin];
+      [label setX:TagCapWidth];
       [tagLabelArray_ addObject:label];
     }
   }
@@ -109,7 +115,7 @@
     }
   }
 	
-  for (int i=0; i<[tagLabelArray_ count]; i++) {
+  for (NSInteger i = 0; i < [tagLabelArray_ count]; i++) {
     self.label = [tagLabelArray_ objectAtIndex:i];
     self.imgView = [tagImageArray_ objectAtIndex:i];
     [self.label setFont:font_];
@@ -149,34 +155,24 @@
 	NSString *title;
   UILabel *label;
   UIImageView *tagBackImageView;
-  for (int i=0; i<[tagLabelArray_ count]; i++) {
+  tagLabelOriginX = FirstTagToLeftSideMargin;
+  for (NSInteger i = 0; i < [tagLabelArray_ count]; i++) {
     
     label = [tagLabelArray_ objectAtIndex:i];
     tagBackImageView = [tagImageArray_ objectAtIndex:i];
     title = label.text;
     CGSize size = [title sizeWithFont:font_ constrainedToSize:tagSize_];
     
-    if (i==0) {
-      tagLabelOriginX = FirstTagToLeftSideMargin;
-    } else {
-      tagLabelOriginX += size.width + MarginBetweenTags * 2;
-    }
-    
-    //[tagBackImageView setFrame:CGRectMake(tagLabelOriginX, 0, size.width + MarginBetweenTags * 2, TagHeight)];
-		// 可以替换为：
+
     [tagBackImageView setX:tagLabelOriginX];
-    [tagBackImageView setWidth:size.width + MarginBetweenTags * 2];
-    [tagBackImageView setHeight:TagHeight];
-    
-    
-    //[label setFrame:CGRectMake(TagCapWidth, TagCapHeightMargin, size.width, size.height)];
-    // 可以替换为：
-    [label setX:TagCapWidth];
-    [label setY:TagCapHeightMargin];
+    [tagBackImageView setWidth:size.width + TagCapWidth * 2];
+
     [label setWidth:size.width];
     [label setHeight:size.height];
     
-    [tagBackImageView setCenterY:[self height]/2];
+    [tagBackImageView setCenterY:[self height] / 2];
+    
+    tagLabelOriginX += size.width + TagCapWidth * 2 + MarginBetweenTags;
   }
 }
 

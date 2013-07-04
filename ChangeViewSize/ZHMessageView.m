@@ -20,9 +20,6 @@
 @property (nonatomic, retain) UIFont *titleFont;
 @property (nonatomic, retain) UIFont *messageFont;
 
-@property (nonatomic, copy) NSString *titleString;
-@property (nonatomic, copy) NSString *messageString;
-
 - (CGSize)titleLabelSize;
 - (CGSize)messageLabelSize;
 
@@ -35,8 +32,6 @@
 @synthesize maxSize = maxSize_;
 @synthesize titleFont = titleFont_;
 @synthesize messageFont = messageFont_;
-@synthesize titleString = titleString_;
-@synthesize messageString = messageString_;
 
 - (id)initWithFrame:(CGRect)frame
 {
