@@ -34,7 +34,7 @@
 		CA5170AB1782D537009B29B5 /* ZHListViewArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5170A91782D537009B29B5 /* ZHListViewArrowRight@2x.png */; };
 		CA6D5D241783BD7600259CBA /* ZHQuestionViewTopicBase.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */; };
 		CA6D5D251783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CA6D5D231783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png */; };
-		CA87D87B178529EA0058DCE3 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = CA87D87A178529EA0058DCE3 /* UIView+Frame.m */; };
+		CA87D88D178555F80058DCE3 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = CA87D88C178555F80058DCE3 /* UIView+Frame.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +85,8 @@
 		CA5170A91782D537009B29B5 /* ZHListViewArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZHListViewArrowRight@2x.png"; sourceTree = SOURCE_ROOT; };
 		CA6D5D221783BD7600259CBA /* ZHQuestionViewTopicBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZHQuestionViewTopicBase.png; sourceTree = SOURCE_ROOT; };
 		CA6D5D231783BD7600259CBA /* ZHQuestionViewTopicBase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZHQuestionViewTopicBase@2x.png"; sourceTree = SOURCE_ROOT; };
-		CA87D879178529EA0058DCE3 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		CA87D87A178529EA0058DCE3 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		CA87D88B178555F80058DCE3 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		CA87D88C178555F80058DCE3 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,18 +217,10 @@
 		CA87D874178528B60058DCE3 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				CA87D875178528F00058DCE3 /* UIView+Frame */,
+				CA87D88B178555F80058DCE3 /* UIView+Frame.h */,
+				CA87D88C178555F80058DCE3 /* UIView+Frame.m */,
 			);
 			name = Vendors;
-			sourceTree = "<group>";
-		};
-		CA87D875178528F00058DCE3 /* UIView+Frame */ = {
-			isa = PBXGroup;
-			children = (
-				CA87D879178529EA0058DCE3 /* UIView+Frame.h */,
-				CA87D87A178529EA0058DCE3 /* UIView+Frame.m */,
-			);
-			path = "UIView+Frame";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +348,7 @@
 				CA5170971782B479009B29B5 /* ZHHeaderView.m in Sources */,
 				CA51709A1782B487009B29B5 /* ZHFooterView.m in Sources */,
 				CA21216C178334E9007CB631 /* ZHMessageView.m in Sources */,
-				CA87D87B178529EA0058DCE3 /* UIView+Frame.m in Sources */,
+				CA87D88D178555F80058DCE3 /* UIView+Frame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
