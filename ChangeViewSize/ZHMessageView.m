@@ -41,15 +41,18 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-  NSLog(@"%s",__func__);
+  //NSLog(@"%s",__func__);
 	self.titleFont = [UIFont systemFontOfSize:TitleFontSize];
 	self.messageFont = [UIFont systemFontOfSize:MessageFontSize];
 		
-	self.maxSize = CGSizeMake(self.frame.size.width, 1100);
+	self.maxSize = CGSizeMake(self.frame.size.width, 200);
+    
 	self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	self.messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	[titleLabel_ setNumberOfLines:0];
 	[messageLabel_ setNumberOfLines:0];
+  [titleLabel_ setFont:self.titleFont];
+  [messageLabel_ setFont:self.messageFont];
 	[titleLabel_ setBackgroundColor:[UIColor clearColor]];
 	[messageLabel_ setBackgroundColor:[UIColor clearColor]];
 	[titleLabel_ setLineBreakMode:NSLineBreakByWordWrapping];
@@ -63,53 +66,71 @@
 
 - (void)addTitle:(NSString *)title andMessage:(NSString *)message
 {
-	self.titleString = title;
-	self.messageString = message;
+  
+  [self.titleLabel setText:title];
+  [self.messageLabel setText:message];
+  
 	[self setNeedsLayout];
 }
 
 - (void)layoutSubviews
 {
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 	[super layoutSubviews];
+  
 	CGPoint messageOrigin = CGPointZero;
 	
-	if (titleString_) {
-	CGSize lineSize = [titleString_ sizeWithFont:titleFont_
-															 constrainedToSize:maxSize_
-																	 lineBreakMode:NSLineBreakByWordWrapping];
-	[titleLabel_ setFrame:CGRectMake(0, 0, lineSize.width, lineSize.height)];
-	[titleLabel_ setText:titleString_];
-	messageOrigin.y = titleLabel_.frame.origin.y + lineSize.height;
+	if (self.titleLabel.text.length > 0) {
+    CGSize lineSize = [self titleLabelSize];
+    
+    [titleLabel_ setFrame:CGRectMake(0, 0, lineSize.width, lineSize.height)];
+    messageOrigin.y = titleLabel_.frame.origin.y + lineSize.height;
 		
-	}
+	} else {
+  	[titleLabel_ setFrame:CGRectZero];
+  }
 	
-	if (messageString_) {
-	CGSize messageSize = [messageString_ sizeWithFont:messageFont_
-																		constrainedToSize:maxSize_
-																				lineBreakMode:NSLineBreakByWordWrapping];
+	if (self.messageLabel.text.length > 0) {
+    CGSize messageSize = [self messageLabelSize];
 		
-	[messageLabel_ setFrame:CGRectMake(0,
+    [messageLabel_ setFrame:CGRectMake(0,
 																			 messageOrigin.y,
 																			 messageSize.width,
 																			 messageSize.height)];
-	[messageLabel_ setText:messageString_];
- }
+  } else {
+  	[messageLabel_ setFrame:CGRectZero];
+  }
   
 }
 
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-  NSLog(@"%s",__func__);
+  //NSLog(@"%s",__func__);
   CGRect frame = self.frame;
-	frame.size.height =  messageLabel_.bounds.size.height +
-	titleLabel_.bounds.size.height;
+  CGSize titleLabelSize = [self titleLabelSize];
+  CGSize messageLabelSize  =[self messageLabelSize];
+	frame.size.height =  titleLabelSize.height + messageLabelSize.height;
   return frame.size;
 }
 
 
 
-#pragma mark - return Label Size
+#pragma mark - return Two Label Size
+
+- (CGSize)titleLabelSize
+{
+	return [self.titleLabel.text sizeWithFont:self.titleLabel.font
+                          constrainedToSize:maxSize_
+                              lineBreakMode:self.titleLabel.lineBreakMode];
+}
+
+- (CGSize)messageLabelSize
+{
+	return [self.messageLabel.text sizeWithFont:self.messageLabel.font
+                            constrainedToSize:maxSize_
+                                lineBreakMode:self.messageLabel.lineBreakMode];
+}
+
 
 @end

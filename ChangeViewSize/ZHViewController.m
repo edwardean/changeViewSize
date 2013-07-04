@@ -26,7 +26,7 @@
 
 - (void)loadView
 {
-  NSLog(@"%s",__func__);
+  //NSLog(@"%s",__func__);
 	ZHViewA *view = [[ZHViewA alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.view = view;
 }
@@ -35,7 +35,6 @@
 {
 	[super viewDidLoad];
 	[self.view setBackgroundColor:[UIColor whiteColor]];
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,16 +44,14 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillLayoutSubviews
 {
-	[super viewWillAppear:animated];
-  NSLog(@"%s",__func__);
+	
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLayoutSubviews
 {
-	[super viewDidAppear:animated];
-  NSLog(@"%s",__func__);
+	
 }
 
 

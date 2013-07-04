@@ -19,10 +19,6 @@
 #define imageSizeHeigh	15
 
 @interface ZHFooterView ()
-{
-	NSInteger fans;
-	NSInteger comments;
-}
 
 @property (nonatomic, retain) UIView *footherView;
 @property (nonatomic, retain) UIButton *favButton;
@@ -46,7 +42,7 @@
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
 		[self setUp];
 	}
 	return self;
@@ -54,6 +50,7 @@
 
 - (void)setUp
 {
+  // 设置关注按钮
 	self.fansButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[fansButton_ setImage:[UIImage imageNamed:@"ZHQuestionViewFollowingIcon@2x.png"]
 							 forState:UIControlStateNormal];
@@ -65,26 +62,33 @@
 	[fansButton_ setCenter:fansButtonCenter];
 	[self addSubview:fansButton_];
 	
+  // 设置评论按钮
 	self.commentsButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[commentsButton_ setImage:[UIImage imageNamed:@"ZHQuestionViewCommentIcon@2x.png"]
 									 forState:UIControlStateNormal];
-	[commentsButton_ setFrame:CGRectMake(0,
-																			 self.frame.size.height/2,
-																			 imageSizeWidth, imageSizeHeigh)];
-	CGPoint commentsButtonCenter = commentsButton_.center;
-	commentsButtonCenter.y = self.center.y;
-	[commentsButton_ setCenter:commentsButtonCenter];
 	[self addSubview:commentsButton_];
 	
+  
+  UIColor *fontColor = [UIColor colorWithWhite:0.510 alpha:1.000];
+  UIFont *textFont = [UIFont systemFontOfSize:14];
+  
+  // 设置关注标签 
 	self.fansLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	[fansLabel_ setBackgroundColor:[UIColor clearColor]];
+  [fansLabel_ setTextColor:fontColor];
+  [fansLabel_ setFont:textFont];
 	[self addSubview:fansLabel_];
 	
+  
+  // 设置评论标签
 	self.commentsLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	[commentsLabel_ setBackgroundColor:[UIColor clearColor]];
+  [commentsLabel_ setTextColor:fontColor];
+  [commentsLabel_ setFont:textFont];
 	[self addSubview:commentsLabel_];
 	
 	
+  // 设置关注按钮
 	self.favButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
 	[favButton_ setFrame:CGRectMake(0, 0, 55, 30)];
 	[favButton_ setTitle:@"关注" forState:UIControlStateNormal];
@@ -96,50 +100,47 @@
 
 - (void)addFans:(NSInteger)f comments:(NSInteger)c
 {
-	fans = f;
-	comments = c;
+  [fansLabel_ setText:[NSString stringWithFormat:@"%i",f]];
+  
+  [commentsLabel_ setText:[NSString stringWithFormat:@"%i",c]];
+  
 	[self setNeedsLayout];
 }
 
 - (void)layoutSubviews
 {
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 	[super layoutSubviews];
-	CGFloat fansLabelOriginX = fansButton_.frame.origin.x
-	+fansButton_.frame.size.width + FansButtonToFansLabelMargin;
-	[fansLabel_ setFrame:CGRectMake(fansLabelOriginX,
-																	self.frame.size.height/2,
-																	0,0)];
-	[fansLabel_ setText:[NSString stringWithFormat:@"%i",fans]];
-	[fansLabel_ sizeToFit];
+  
+  [fansLabel_ sizeToFit];
+	CGFloat fansLabelOriginX = fansButton_.frame.origin.x + fansButton_.frame.size.width + FansButtonToFansLabelMargin;
+  [fansLabel_ setFrame:CGRectMake(fansLabelOriginX, 0, self.fansLabel.frame.size.width, self.fansLabel.frame.size.height)];
 	CGPoint fansLabelCenter = self.fansLabel.center;
-	fansLabelCenter.y = self.frame.size.height/2;
+	fansLabelCenter.y = self.frame.size.height / 2;
 	[fansLabel_ setCenter:fansLabelCenter];
-	
-	
-	CGFloat commentButtonOriginX = fansLabelOriginX +
-	fansLabel_.bounds.size.width +
+		
+  
+	CGFloat commentButtonOriginX = fansLabelOriginX + fansLabel_.frame.size.width +
 	FansLabelToCommentsButtonMargin;
-	[commentsButton_ setFrame:CGRectMake(commentButtonOriginX,
-																			 self.frame.size.height/2,
-																			 17, 15)];
+  [commentsButton_ setFrame:CGRectMake(commentButtonOriginX,
+																			 0,
+																			 imageSizeWidth,
+                                       imageSizeHeigh)];
 	CGPoint commentsButtonCenter = commentsButton_.center;
-	commentsButtonCenter.y = self.frame.size.height/2;
+	commentsButtonCenter.y = self.frame.size.height / 2;
 	[commentsButton_ setCenter:commentsButtonCenter];
 	
 	
-	
-	CGFloat commemtsLabelOriginX = commentButtonOriginX +
-	commentsButton_.bounds.size.width +
+	CGFloat commemtsLabelOriginX = commentButtonOriginX + commentsButton_.bounds.size.width +
 	CommentsButtonToCommentsLabelMargin;
+  [commentsLabel_ sizeToFit];
 	[commentsLabel_ setFrame:CGRectMake(commemtsLabelOriginX,
-																			self.frame.size.height/2,
-																			0, 0)];
-	[commentsLabel_ setText:[NSString stringWithFormat:@"%i",comments]];
-	[commentsLabel_ sizeToFit];
+																			self.frame.size.height / 2,
+																			self.commentsLabel.frame.size.width,
+                                      self.commentsLabel.frame.size.height)];
 	CGPoint commentsLabelCenter = commentsLabel_.center;
-	commentsLabelCenter.y = self.frame.size.height/2;
+	commentsLabelCenter.y = self.frame.size.height / 2;
 	[commentsLabel_ setCenter:commentsLabelCenter];
-	
+  
 }
 @end

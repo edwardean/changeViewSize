@@ -86,7 +86,7 @@ static NSString *tag15 = @"爱情";
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-    NSLog(@"%s",__func__);
+    //NSLog(@"%s",__func__);
     
     // Set the data Arrays
 		self.stringArray = @[string1,string2,string3,string4,string5,string6,string7,string8,string9,string10];
@@ -167,7 +167,7 @@ static NSString *tag15 = @"爱情";
 {
 	[super layoutSubviews];
   
-	NSLog(@"%s",__func__);
+	//NSLog(@"%s",__func__);
 
 	CGRect headerViewFrame = headerView_.frame;
   

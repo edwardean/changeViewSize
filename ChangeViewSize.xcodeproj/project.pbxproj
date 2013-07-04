@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA17152D17842769008F8857 /* ZHCustomFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = CA17152C17842769008F8857 /* ZHCustomFrame.m */; };
 		CA21216C178334E9007CB631 /* ZHMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA21216B178334E9007CB631 /* ZHMessageView.m */; };
 		CA51705B1782A828009B29B5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA51705A1782A828009B29B5 /* UIKit.framework */; };
 		CA51705D1782A828009B29B5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA51705C1782A828009B29B5 /* Foundation.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA17152B17842769008F8857 /* ZHCustomFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCustomFrame.h; sourceTree = "<group>"; };
+		CA17152C17842769008F8857 /* ZHCustomFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCustomFrame.m; sourceTree = "<group>"; };
 		CA21216A178334E9007CB631 /* ZHMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHMessageView.h; sourceTree = "<group>"; };
 		CA21216B178334E9007CB631 /* ZHMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHMessageView.m; sourceTree = "<group>"; };
 		CA5170571782A828009B29B5 /* ChangeViewSize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChangeViewSize.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA17152A17842752008F8857 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				CA17152B17842769008F8857 /* ZHCustomFrame.h */,
+				CA17152C17842769008F8857 /* ZHCustomFrame.m */,
+			);
+			name = Vendors;
+			sourceTree = "<group>";
+		};
 		CA51704E1782A828009B29B5 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 				CA51707E1782A829009B29B5 /* ChangeViewSizeTests */,
 				CA5170591782A828009B29B5 /* Frameworks */,
 				CA5170A31782B82C009B29B5 /* Resource */,
+				CA17152A17842752008F8857 /* Vendors */,
 				CA5170581782A828009B29B5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -335,6 +348,7 @@
 				CA5170971782B479009B29B5 /* ZHHeaderView.m in Sources */,
 				CA51709A1782B487009B29B5 /* ZHFooterView.m in Sources */,
 				CA21216C178334E9007CB631 /* ZHMessageView.m in Sources */,
+				CA17152D17842769008F8857 /* ZHCustomFrame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
